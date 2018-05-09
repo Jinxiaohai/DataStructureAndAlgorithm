@@ -1,0 +1,2 @@
+HEADERS += \
+    dictionary.h

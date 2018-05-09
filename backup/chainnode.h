@@ -1,21 +1,16 @@
-/**
- ** This file is part of the chain project.
- ** Copyright 2018 xiaohai <xiaohaijin@outlook.com>.
- **
- ** This program is free software: you can redistribute it and/or modify
- ** it under the terms of the GNU General Public License as published by
- ** the Free Software Foundation, either version 3 of the License, or
- ** (at your option) any later version.
- **
- ** This program is distributed in the hope that it will be useful,
- ** but WITHOUT ANY WARRANTY; without even the implied warranty of
- ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- ** GNU General Public License for more details.
- **
- ** You should have received a copy of the GNU General Public License
- ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
- **/
-
+////////////////////////////////////////////////////////////////////////
+/// COPYRIGHT NOTICE
+/// COPYRIGHT (c) 2018, 金小海
+/// All rights reserved.
+///
+/// @file    chain node is used to describe the node of chain.
+/// @version 1.0
+/// @author  jinxiaohai <jinxiaohaijin@outlook.com>
+/// @date    2018 05 09    14:56:55
+/// @brief   chain node is used to describe the node of chain.
+///
+/// 修订说明:最初版本
+////////////////////////////////////////////////////////////////////////
 #ifndef CHAINNODE_H
 #define CHAINNODE_H
 
