@@ -27,8 +27,10 @@ class sortedChain : public dictionary<K, E> {
 
   bool empty() const;
   int size() const;
+  ///
   std::pair<const K, E>* find(const K&) const;
   void erase(const K&);
+  ///
   void insert(const std::pair<const K, E>&);
   void output(std::ostream& out) const;
 
@@ -38,5 +40,110 @@ class sortedChain : public dictionary<K, E> {
   /// number of elements in dictionary
   int dSize;
 };
+
+template <class K, class E>
+sortedChain<K, E>::sortedChain() {
+  dSize = 0;
+  firstNode = nullptr;
+}
+
+template <class K, class E>
+sortedChain<K, E>::~sortedChain() {
+  while (firstNode != nullptr) {
+    pairNode<K, E>* nextNode = firstNode->next;
+    delete firstNode;
+    firstNode = nextNode;
+  }
+}
+
+template <class K, class E>
+bool sortedChain<K, E>::empty() const {
+  return dSize == 0;
+}
+
+template <class K, class E>
+int sortedChain<K, E>::size() const {
+  return dSize;
+}
+
+template <class K, class E>
+std::pair<const K, E>* sortedChain<K, E>::find(const K& theKey) const {
+  pairNode<K, E>* currentNode = firstNode;
+
+  while (currentNode != nullptr && (currentNode->element).first != theKey) {
+    currentNode = currentNode->next;
+  }
+
+  if (currentNode != nullptr && (currentNode->element).first == theKey) {
+    return &(currentNode->element);
+  }
+
+  return nullptr;
+}
+
+template <class K, class E>
+void sortedChain<K, E>::erase(const K& theKey) {
+  pairNode<K, E>* nextCurrentNode = firstNode;
+  pairNode<K, E>* currentNode = nullptr;
+
+  while (nextCurrentNode != nullptr &&
+         nextCurrentNode->element.first < theKey) {
+    currentNode = nextCurrentNode;
+    nextCurrentNode = currentNode->next;
+  }
+
+  if (nextCurrentNode != nullptr && nextCurrentNode->element.first == theKey) {
+    if (currentNode == nullptr) {
+      firstNode = nextCurrentNode->next;
+    } else {
+      currentNode->next = nextCurrentNode->next;
+    }
+
+    delete nextCurrentNode;
+    --dSize;
+  }
+}
+
+template <class K, class E>
+void sortedChain<K, E>::insert(const std::pair<const K, E>& thePair) {
+  pairNode<K, E>* p = firstNode;
+  pairNode<K, E>* tp = nullptr;
+
+  while (p != nullptr && p->element.first < thePair.first) {
+    tp = p;
+    p = p->next;
+  }
+
+  if (p != nullptr && p->element.first == thePair.first) {
+    p->element.second = thePair.second;
+    return;
+  }
+
+  pairNode<K, E>* newNode = new pairNode<K, E>(thePair, p);
+
+  if (tp == nullptr) {
+    firstNode = newNode;
+  } else {
+    tp->next = newNode;
+  }
+  ++dSize;
+  return;
+}
+
+template <class K, class E>
+void sortedChain<K, E>::output(std::ostream& out) const {
+  for (pairNode<K, E>* currentNode = firstNode; currentNode != nullptr;
+       currentNode = currentNode->next) {
+    out << currentNode->element.first << "   " << currentNode->element.second
+        << "  ";
+  }
+}
+
+template <class K, class E>
+std::ostream& operator<<(std::ostream& out,
+                         const sortedChain<K, E>& theSortedChain) {
+  theSortedChain.output(out);
+  return out;
+}
 
 #endif  // SORTEDCHAIN_H

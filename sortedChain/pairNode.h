@@ -18,6 +18,7 @@
 
 template <class K, class E>
 class pairNode {
+ public:
   /// 定义pairNode里面的元素的类型
   typedef std::pair<const K, E> pairType;
   pairType element;
