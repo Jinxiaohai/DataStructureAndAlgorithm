@@ -1,1 +1,1 @@
-# learnDataStructureAndAlgorithm
+# DataStructureAndAlgorithm
